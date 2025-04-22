@@ -1,0 +1,35 @@
+body {
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 1000;
+    font-style:normal;
+}
+
+.search-bar {
+    background-color: #d1dffe;
+    border-radius: 30px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+#tasto-ricerca {
+    background-color: #d1dffe;
+    border-radius: 30px;
+}
+
+#bottone-ricerca {
+    border-radius: 30px;
+}
+
+#bottone-ricerca:hover {
+    border-radius: 30px;
+    background-color: #4e6597;
+    color: #d1dffe;
+}
+
+.ricerca {
+    margin-bottom: -10px;
+}
