@@ -1,8 +1,8 @@
 body {
     font-family: "Quicksand", sans-serif;
-    font-optical-sizing: auto;
     font-weight: 1000;
     font-style:normal;
+    background:rgb(231, 232, 245); /* fare background fisso e scorrimento degli elementi*/
 }
 
 .search-bar {
@@ -33,3 +33,28 @@ body {
 .ricerca {
     margin-bottom: -10px;
 }
+
+  th {
+    text-align: left;
+  }
+  tr a {
+    display: block;
+    word-wrap: break-word;
+  }
+  tr th:nth-child(1) a {
+    width: 10ch;
+  }
+
+ /* Blocco schede */
+  .flex-container { 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:  space-between;
+    
+  }
+
+  .carta {
+    padding: 30px 100px 30px 100px;
+    margin: 10px;
+    background-color: #4e6597;
+  }
