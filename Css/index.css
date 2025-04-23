@@ -54,7 +54,12 @@ body {
   }
 
   .carta {
-    padding: 30px 100px 30px 100px;
+    padding: 30px 55px 30px 55px;
     margin: 10px;
     background-color: #4e6597;
+  }
+
+  .logo {
+  width: 100px;
+  max-height: auto;
   }

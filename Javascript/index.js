@@ -8,15 +8,22 @@ document.addEventListener ("DOMContentLoaded", function () {
             const carta = document.createElement("div");
             carta.classList.add("carta");
 
-            var logo = document.createElement("img");
-            logo.src= card.store_name.logo;
+            const logo = document.createElement("img");
+            logo.classList.add("logo");
+            logo.src= card.store_name.link;
 
             const negozio = document.createElement("div");
             negozio.classList.add("store-name");
             negozio.textContent = card.store_name.name;
+            
+            const numero = document.createElement("div"); //utile solo in fase di testing, da rimuovere
+            numero.classList.add("numero");
+            numero.textContent = card.number;
 
             carta.appendChild(logo);
             carta.appendChild(negozio);
+            carta.appendChild(numero);
+
             container.appendChild(carta);
             const cardContainer = document.getElementById("card-container");
             cardContainer.appendChild(container);
@@ -45,19 +52,6 @@ return fetch("http://localhost:8080/api/card", {
 }
 
 
-function immagine(){
-    const img = document.createElement('img');
-    const file = document
-const reader = new FileReader();
-
-reader.addEventListener("load", function(){
-    img.src=reader.result;
-}, false);
-if (file) {
-    reader.readAsDataURL(file);
-}
-
-}
 
 /*
 //Filtro card
