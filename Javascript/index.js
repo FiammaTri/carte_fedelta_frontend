@@ -1,10 +1,24 @@
 //Creazione delle card
 document.addEventListener ("DOMContentLoaded", function () {
+
+    let mostrato = new Set(); //utile per tenere traccia degli ID già mostrati
+
     const container = document.createElement("div");
-        container.classList.add("flex-container");
+    container.classList.add("flex-container");
+    const cardContainer = document.getElementById("card-container");
 
     getCards().then(cards => {
         cards.forEach(card => {
+
+            //verifica il nome dello store
+            const store = card.store_name;
+            //prende l'id sia se viene passato come oggetto che come numero
+            const mostratoId = (typeof store === 'object' && store !== null) ? store.id : store;
+            
+            //se l'id non è presente inizia il ciclo di creazione della card
+            if (!mostrato.has(mostratoId)) {
+                mostrato.add(mostratoId);
+
             const carta = document.createElement("div");
             carta.classList.add("carta");
 
@@ -25,14 +39,15 @@ document.addEventListener ("DOMContentLoaded", function () {
             carta.appendChild(numero);
 
             container.appendChild(carta);
-            const cardContainer = document.getElementById("card-container");
-            cardContainer.appendChild(container);
+           
+            } 
+
             });
+            cardContainer.appendChild(container);
     });
 });
 
-
-    function getCards() {
+function getCards() {
 return fetch("http://localhost:8080/api/card", {
     method: "GET"
 })
