@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     fetch (`http://localhost:8080/api/card`, {
         method: "GET"
@@ -6,18 +5,23 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(cards => {
             const card = cards.map(c => {
-                
+                let id_value = c.id;
+                let number_value = c.number;
                 return `<svg class="barcode"
-                            jsbarcode-format="EAN13"
-                            jsbarcode-value="123456789012"
+                            jsbarcode-format="ean13"
+                            jsbarcode-value="${number_value}"
                             jsbarcode-textmargin="0"
-                            jsbarcode-fontoptions="bold">
+                            jsbarcode-font="monospace"
+                            jsbarcode-width="2"
+                            jsbarcode-height="100"
+                            jsbarcode-displayValue=true>
                         </svg>`;
             }).join('');
             document.getElementById('lista_card').innerHTML = card;
+            JsBarcode(".barcode").init();
         })
         .catch(error => console.error("errore: ", error));
     
 });
 
-JsBarcode(".barcode").init();
+
