@@ -63,3 +63,14 @@ body {
   width: 100px;
   max-height: auto;
   }
+
+
+  .discover_more {
+    display: flex;
+    justify-content: center;
+  }
+
+  .style_btn {
+    color: lightgray;
+  }
+  

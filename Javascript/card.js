@@ -1,6 +1,15 @@
-// fetch avvio pagina (mostrare il contenuto delle card - barcode e logo)    
+// funzione per recuperare il parametro 'id' che passeremo da index.js
+function getQueryParam(param) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(param);
+  }
+
+// costante per completare l'url
+const card_id = getQueryParam('id');
+
+// fetch avvio pagina (mostrare il contenuto delle card - barcode e logo)
 document.addEventListener("DOMContentLoaded", function () {
-    fetch (`http://localhost:8080/api/card/1`, {
+    fetch (`http://localhost:8080/api/card/`+card_id, {
         method: "GET"
     })
         .then(response => response.json())

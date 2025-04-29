@@ -34,9 +34,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 numero.classList.add("numero");
                 numero.textContent = card.number;
 
+                // bottone per i dettagli ('div'+'a')
+
+                const div_bottone = document.createElement("div");
+                div_bottone.classList.add("discover_more");
+
+                const link_dettaglio = document.createElement("a");
+                link_dettaglio.classList.add("style_btn");
+                link_dettaglio.setAttribute("href", "card.html?id="+card.id);
+                link_dettaglio.textContent = "Dettagli";
+                div_bottone.appendChild(link_dettaglio);
+
                 carta.appendChild(logo);
                 carta.appendChild(negozio);
                 carta.appendChild(numero);
+                carta.appendChild(div_bottone);
 
                 container.appendChild(carta);
 
