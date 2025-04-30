@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const card_container = document.getElementById('lista_card');
 
             card_container.innerHTML = `
-                        <img src="${card.store_name.link}" alt="${card.store_name.logo_name}" width="10%" height="10%">
+                        <img src="${card.store.link}" alt="${card.store.logoName}" width="10%" height="10%">
                         <br>
                         <svg class="barcode"
                             jsbarcode-format="ean13"
