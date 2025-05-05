@@ -5,9 +5,17 @@ container.classList.add("flex-container");
 const cardContainer = document.getElementById("card-container");
 
 var tutte = true;
-//Creazione delle card
-if (tutte) {
+
+
 document.addEventListener("DOMContentLoaded", function () {
+if (tutte) {
+    creazioneCard()
+} 
+});
+
+//Creazione delle card
+function creazioneCard(){
+
 
     getCards().then(cards => {
         cards.forEach(card => {
@@ -59,8 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         cardContainer.appendChild(container);
     });
-});
 };
+
 
 
 function getCards() {
