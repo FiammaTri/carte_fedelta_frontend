@@ -1,11 +1,13 @@
+let mostrato = new Set(); //utile per tenere traccia degli ID già mostrati
+
+const container = document.createElement("div");
+container.classList.add("flex-container");
+const cardContainer = document.getElementById("card-container");
+
+var tutte = true;
 //Creazione delle card
-document.addEventListener ("DOMContentLoaded", function () {
-
-    let mostrato = new Set(); //utile per tenere traccia degli ID già mostrati
-
-    const container = document.createElement("div");
-    container.classList.add("flex-container");
-    const cardContainer = document.getElementById("card-container");
+if (tutte) {
+document.addEventListener("DOMContentLoaded", function () {
 
     getCards().then(cards => {
         cards.forEach(card => {
@@ -46,14 +48,57 @@ document.addEventListener ("DOMContentLoaded", function () {
             cardContainer.appendChild(container);
     });
 });
+};
+
 
 function getCards() {
-return fetch("http://localhost:8080/api/card", {
-    method: "GET"
-})
-.then(response => {
-    if (!response.ok) {
-        throw new Error("Errore durante il caricamento delle card");
+    return fetch("http://localhost:8080/api/card", {
+        method: "GET"
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Errore durante il caricamento delle card");
+            }
+            return response.json();
+        })
+        .catch(error => {
+
+            console.error("Errore:", error);
+            document.getElementById("error-message").textContent = "Impossibile caricare le card. Riprova più tardi.";
+            return [];
+        });
+
+}
+
+function getCardsByName(search_value) {
+    return fetch("http://localhost:8080/api/card/store/"+search_value, {
+        method: "GET"
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Errore durante il caricamento delle card");
+            }
+            return response.json();
+        })
+        .catch(error => {
+
+            console.error("Errore:", error);
+            document.getElementById("error-message").textContent = "Impossibile caricare le card. Riprova più tardi.";
+            return [];
+        });
+}
+
+
+document.getElementById('ricerca-testo').addEventListener('submit', function (event) {
+    tutte = false;
+    event.preventDefault();
+
+    const store_search = document.getElementById('tasto-ricerca').value;
+    console.log(store_search);
+
+    if(store_search==="") {
+        alert("Inserire nome store");
+        return;
     }
     return response.json();
 })
@@ -64,7 +109,7 @@ return fetch("http://localhost:8080/api/card", {
     return []; 
 });
 
-}
+
 
 
 
