@@ -40,10 +40,11 @@ function creazioneCard(){
                 negozio.classList.add("store-name");
                 negozio.textContent = card.store.name;
 
+                /*
                 const numero = document.createElement("div"); //utile solo in fase di testing, da rimuovere
                 numero.classList.add("numero");
                 numero.textContent = card.number;
-
+                */  
                 // bottone per i dettagli ('div'+'a')
 
                 const div_bottone = document.createElement("div");
