@@ -1,11 +1,19 @@
 let mostrato = new Set(); //utile per tenere traccia degli ID già mostrati
 
-const container = document.createElement("div");
-container.classList.add("flex-container");
 const cardContainer = document.getElementById("card-container");
 
-//Creazione delle card
-document.addEventListener("DOMContentLoaded", function () {
+starting_point();
+
+function starting_point () {
+    
+    while(cardContainer.firstChild) {
+        cardContainer.removeChild(cardContainer.firstChild);
+    }
+
+    const container = document.createElement("div");
+    container.classList.add("flex-container");
+
+    mostrato = new Set();
 
     getCards().then(cards => {
         cards.forEach(card => {
@@ -62,7 +70,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         cardContainer.appendChild(container);
     });
-});
+}
+
 
 function getCards() {
     return fetch("http://localhost:8080/api/card", {
@@ -109,13 +118,26 @@ document.getElementById('ricerca-testo').addEventListener('submit', function (ev
     console.log(store_search);
 
     if(store_search==="") {
-        alert("Inserire nome store");
+        starting_point();
         return;
     }
 
+    // aggiunta: svuotare cardContainer con removeChild()
+    while (cardContainer.firstChild) {
+        cardContainer.removeChild(cardContainer.firstChild);
+    }
+
+    // creazione di un nuovo div
+    const new_container = document.createElement("div");
+    new_container.classList.add("card-ricerca");
+    new_container.classList.add("flex-container");
+
+    // reset mostrato
+    mostrato = new Set(); 
+
     getCardsByName(store_search).then(cards => {
         cards.forEach(card => {
-
+            
             //verifica il nome dello store
             const store = card.store;
             //prende l'id sia se viene passato come oggetto che come numero
@@ -156,11 +178,11 @@ document.getElementById('ricerca-testo').addEventListener('submit', function (ev
                 carta.appendChild(numero);
                 carta.appendChild(div_bottone);
 
-                container.appendChild(carta);
+                new_container.appendChild(carta);
 
             }
 
         });
-        cardContainer.appendChild(container);
+        cardContainer.appendChild(new_container);
     });
 })
