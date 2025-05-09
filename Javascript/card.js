@@ -4,6 +4,9 @@ function getQueryParam(param) {
     return params.get(param);
   }
 
+document.body.style.backgroundColor = "#E7E8F5";
+
+
 // costante per completare l'url
 const card_id = getQueryParam('id');
 
@@ -17,17 +20,19 @@ document.addEventListener("DOMContentLoaded", function () {
             const card_container = document.getElementById('lista_card');
 
             card_container.innerHTML = `
-                        <img src="${card.store.link}" alt="${card.store.logoName}" width="10%" height="10%">
+                        <img src="${card.store.link}" alt="${card.store.logoName}" width="12%" height="12%" id="immagine_store">
                         <br>
-                        <svg class="barcode"
-                            jsbarcode-format="ean13"
-                            jsbarcode-value="${card.number}"
-                            jsbarcode-textmargin="0"
-                            jsbarcode-font="monospace"
-                            jsbarcode-width="2"
-                            jsbarcode-height="100"
-                            jsbarcode-displayValue=true>
-                        </svg>
+                        <div class="z-3 p-5 rounded-3" id="card_code">
+                            <svg class="barcode" weight="100%"s
+                                jsbarcode-format="ean13"
+                                jsbarcode-value="${card.number}"
+                                jsbarcode-textmargin="0"
+                                jsbarcode-font="sans-serif"
+                                jsbarcode-width="2"
+                                jsbarcode-height="100"
+                                jsbarcode-displayValue=true>
+                            </svg>
+                        </div>
             `;
 
             JsBarcode(".barcode").init();
