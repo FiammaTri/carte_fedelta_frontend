@@ -4,6 +4,32 @@ const cardContainer = document.getElementById("card-container");
 
 starting_point();
 
+//funzione per la creazione delle carte
+function creazioneCard (card, container) {
+    const carta = document.createElement("div");
+                carta.classList.add("carta");
+
+                const logoContainer = document.createElement("div");
+                logoContainer.classList.add("logoContainer");
+
+                const logo = document.createElement("img");
+                logo.classList.add("logo");
+                logo.src = card.store.link;
+
+                const negozio = document.createElement("div");
+                negozio.classList.add("store-name");
+                negozio.textContent = card.store.storeName;
+
+                const link_dettaglio = document.createElement("a");
+                link_dettaglio.setAttribute("href", "card.html?id=" + card.id);
+                
+                logoContainer.appendChild(logo);
+                carta.appendChild(logoContainer);
+                carta.appendChild(negozio);
+                link_dettaglio.appendChild(carta);
+                container.appendChild(link_dettaglio);
+}
+
 function starting_point () {
     
     while(cardContainer.firstChild) {
@@ -26,44 +52,7 @@ function starting_point () {
             //se l'id non è presente inizia il ciclo di creazione della card
             if (!mostrato.has(mostratoId)) {
                 mostrato.add(mostratoId);
-
-                const carta = document.createElement("div");
-                carta.classList.add("carta");
-
-                const logoContainer = document.createElement("div");
-                logoContainer.classList.add("logoContainer");
-
-                const logo = document.createElement("img");
-                logo.classList.add("logo");
-                logo.src = card.store.link;
-
-                const negozio = document.createElement("div");
-                negozio.classList.add("store-name");
-                negozio.textContent = card.store.storeName;
-/*
-                const numero = document.createElement("div"); //utile solo in fase di testing, da rimuovere
-                numero.classList.add("numero");
-                numero.textContent = card.number;
-*/
-                // bottone per i dettagli ('div'+'a')
-                
-                //const div_bottone = document.createElement("div");
-                //div_bottone.classList.add("discover_more");
-
-                const link_dettaglio = document.createElement("a");
-                //link_dettaglio.classList.add("style_btn");
-                link_dettaglio.setAttribute("href", "card.html?id=" + card.id);
-                //link_dettaglio.textContent = "Dettagli";
-                //div_bottone.appendChild(link_dettaglio);
-
-                logoContainer.appendChild(logo);
-                carta.appendChild(logoContainer);
-                carta.appendChild(negozio);
-               // carta.appendChild(numero);
-                //carta.appendChild(div_bottone);
-                link_dettaglio.appendChild(carta);
-                container.appendChild(link_dettaglio);
-                
+                creazioneCard(card, container);
 
             }
 
@@ -147,42 +136,9 @@ document.getElementById('ricerca-testo').addEventListener('submit', function (ev
             if (!mostrato.has(mostratoId)) {
                 mostrato.add(mostratoId);
 
-                const carta = document.createElement("div");
-                carta.classList.add("carta");
-
-                const logo = document.createElement("img");
-                logo.classList.add("logo");
-                logo.src = card.store.link;
-
-                const negozio = document.createElement("div");
-                negozio.classList.add("store-name");
-                negozio.textContent = card.store.storeName;
-
-                const numero = document.createElement("div"); //utile solo in fase di testing, da rimuovere
-                numero.classList.add("numero");
-                numero.textContent = card.number;
-
-                // bottone per i dettagli ('div'+'a')
-
-                const div_bottone = document.createElement("div");
-                div_bottone.classList.add("discover_more");
-
-                const link_dettaglio = document.createElement("a");
-                link_dettaglio.classList.add("style_btn");
-                link_dettaglio.setAttribute("href", "card.html?id=" + card.id);
-                link_dettaglio.textContent = "Dettagli";
-                div_bottone.appendChild(link_dettaglio);
-
-                carta.appendChild(logo);
-                carta.appendChild(negozio);
-                carta.appendChild(numero);
-                carta.appendChild(div_bottone);
-
-                new_container.appendChild(carta);
-
-            }
-
-        });
-        cardContainer.appendChild(new_container);
+                creazioneCard(card, new_container);
+            };
+            cardContainer.appendChild(new_container);
     });
-})
+});
+});

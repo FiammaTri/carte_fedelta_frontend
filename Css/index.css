@@ -7,7 +7,6 @@ body {
 
 .search-bar {
     background-color: #d1dffe;
-    border-radius: 30px;
     height: auto;
     display: flex;
     align-items: center;
@@ -24,7 +23,7 @@ body {
     border-radius: 30px;
 }
 
-#bottone-ricerca:hover {
+#bottone-ricerca:hover, #bottone-ricerca1:hover {
     border-radius: 30px;
     background-color: #4e6597;
     color: #d1dffe;
@@ -46,10 +45,12 @@ body {
   }
 
  /* Blocco schede */
- #card-container { 
-  display: flex;
-  flex-wrap: wrap;
+ .flex-container { 
+  display: grid;
   justify-content:  space-evenly;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  
 }
 
 .carta:hover{
@@ -58,25 +59,33 @@ body {
 }
 
   .carta {
-    padding: 5px 15px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between;
+    align-items: center; 
+    padding: 8px 15px;
     margin: 10px 2px;
     background-color: #4e6597;
     border-radius: 8px;
     width: 180px;
     height: 120px;
     box-shadow: #405582 0px 3px 15px;
+    
   }
 
-
+  .logo-container {
+  height: 100px;               
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  overflow: hidden;  
+  }
 
   .logo {
-  width: 100px;
-  max-height: auto;
-  margin-top: 0px;
-  }
-
-  .store-name{
-    margin: -5px;
+  margin-top: 15px;
+  height: 50px;
+  object-fit: contain;
   }
 
   .discover_more {
@@ -84,8 +93,10 @@ body {
     justify-content: center;
   }
 
-  .style_btn {
+  a {
     color: lightgray;
+    text-decoration: none;
+
   }
-  
- 
+
+
