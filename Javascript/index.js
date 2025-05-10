@@ -207,4 +207,4 @@ document.getElementById('ricerca-testo').addEventListener('submit', function (ev
         cardContainer.appendChild(new_container);
     });
 });
-});
+
