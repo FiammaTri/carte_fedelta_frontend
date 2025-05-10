@@ -36,7 +36,7 @@ function starting_point () {
 
                 const negozio = document.createElement("div");
                 negozio.classList.add("store-name");
-                negozio.textContent = card.store.name;
+                negozio.textContent = card.store.logoName;
 
                 const numero = document.createElement("div"); //utile solo in fase di testing, da rimuovere
                 numero.classList.add("numero");
@@ -49,7 +49,7 @@ function starting_point () {
 
                 const link_dettaglio = document.createElement("a");
                 link_dettaglio.classList.add("style_btn");
-                link_dettaglio.setAttribute("href", "card.html?id=" + card.id);
+                link_dettaglio.setAttribute("href", "card.html?id=" + card.id+"&store="+card.store.logoName);
                 link_dettaglio.textContent = "Dettagli";
                 div_bottone.appendChild(link_dettaglio);
 
@@ -151,7 +151,7 @@ document.getElementById('ricerca-testo').addEventListener('submit', function (ev
 
                 const negozio = document.createElement("div");
                 negozio.classList.add("store-name");
-                negozio.textContent = card.store.storeName;
+                negozio.textContent = card.store.logoName;
 
                 const numero = document.createElement("div"); //utile solo in fase di testing, da rimuovere
                 numero.classList.add("numero");
@@ -164,7 +164,7 @@ document.getElementById('ricerca-testo').addEventListener('submit', function (ev
 
                 const link_dettaglio = document.createElement("a");
                 link_dettaglio.classList.add("style_btn");
-                link_dettaglio.setAttribute("href", "card.html?id=" + card.id);
+                link_dettaglio.setAttribute("href", "card.html?id=" + card.id + "&store="+card.store.logoName);
                 link_dettaglio.textContent = "Dettagli";
                 div_bottone.appendChild(link_dettaglio);
 
