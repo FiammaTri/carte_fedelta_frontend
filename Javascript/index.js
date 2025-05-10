@@ -4,6 +4,32 @@ const cardContainer = document.getElementById("card-container");
 
 starting_point();
 
+//funzione per la creazione delle carte
+function creazioneCard (card, container) {
+    const carta = document.createElement("div");
+                carta.classList.add("carta");
+
+                const logoContainer = document.createElement("div");
+                logoContainer.classList.add("logoContainer");
+
+                const logo = document.createElement("img");
+                logo.classList.add("logo");
+                logo.src = card.store.link;
+
+                const negozio = document.createElement("div");
+                negozio.classList.add("store-name");
+                negozio.textContent = card.store.storeName;
+
+                const link_dettaglio = document.createElement("a");
+                link_dettaglio.setAttribute("href", "card.html?id=" + card.id);
+                
+                logoContainer.appendChild(logo);
+                carta.appendChild(logoContainer);
+                carta.appendChild(negozio);
+                link_dettaglio.appendChild(carta);
+                container.appendChild(link_dettaglio);
+}
+
 function starting_point () {
     
     while(cardContainer.firstChild) {
@@ -180,4 +206,5 @@ document.getElementById('ricerca-testo').addEventListener('submit', function (ev
         });
         cardContainer.appendChild(new_container);
     });
-})
+});
+});
