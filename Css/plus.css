@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+*{
+    font-family: "Quicksand", sans-serif;
+}
+
+
+.header {
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.plus_titolo {
+   justify-items: center;
+}

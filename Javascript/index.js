@@ -6,7 +6,7 @@ starting_point();
 
 //funzione per la creazione delle carte
 function creazioneCard (card, container) {
-    const carta = document.createElement("div");
+                const carta = document.createElement("div");
                 carta.classList.add("carta");
 
                 const logoContainer = document.createElement("div");
@@ -38,10 +38,11 @@ function starting_point () {
 
     const container = document.createElement("div");
     container.classList.add("flex-container");
-
+    
     mostrato = new Set();
-
+    
     getCards().then(cards => {
+        cartaPlus(container);
         cards.forEach(card => {
 
             //verifica il nome dello store
@@ -57,6 +58,7 @@ function starting_point () {
             }
 
         });
+        
         cardContainer.appendChild(container);
     });
 }
@@ -142,3 +144,25 @@ document.getElementById('ricerca-testo').addEventListener('submit', function (ev
     });
 });
 });
+
+function cartaPlus (container) {
+        
+    const link = document.createElement("a");
+    link.setAttribute("href", "plus.html"); 
+
+    const cartaPlus = document.createElement("div");
+    cartaPlus.classList.add("carta");
+
+    const plusContainer = document.createElement("div");
+    plusContainer.classList.add("plusContainer");
+
+    const plus = document.createElement("i");
+    plus.classList.add("fa-solid", "fa-square-plus");
+
+    plusContainer.appendChild(plus);
+    cartaPlus.appendChild(plusContainer);
+    link.appendChild(cartaPlus);
+
+    container.appendChild(link);
+
+}
