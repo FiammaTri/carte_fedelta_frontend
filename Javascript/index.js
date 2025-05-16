@@ -18,10 +18,10 @@ function creazioneCard (card, container) {
 
                 const negozio = document.createElement("div");
                 negozio.classList.add("store-name");
-                negozio.textContent = card.store.storeName;
+                negozio.textContent = card.store.logoName;
 
                 const link_dettaglio = document.createElement("a");
-                link_dettaglio.setAttribute("href", "card.html?id=" + card.id);
+                link_dettaglio.setAttribute("href", "card.html?id=" + card.id + "&store=" +card.store.logoName);
                 
                 logoContainer.appendChild(logo);
                 carta.appendChild(logoContainer);
@@ -143,6 +143,7 @@ document.getElementById('ricerca-testo').addEventListener('submit', function (ev
             cardContainer.appendChild(new_container);
     });
 });
+<<<<<<< HEAD
 });
 
 function cartaPlus (container) {
@@ -166,3 +167,6 @@ function cartaPlus (container) {
     container.appendChild(link);
 
 }
+=======
+});
+>>>>>>> 028ffac0384436c5f8218c38adb954958816b842
