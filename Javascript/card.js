@@ -56,13 +56,31 @@ function getCardsByStoreName(name) {
 
 }
 
+function getLogoByStoreName(name) {
+    return fetch("http://localhost:8080/api/store/byName/" + name, {
+        method: "GET"
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Errore durante il caricamento delle card");
+            }
+            return response.json();
+        })
+        .catch(error => {
+
+            console.error("Errore:", error);
+            document.getElementById("error-message").textContent = "Impossibile caricare le card. Riprova più tardi.";
+            return [];
+        });
+}
+
 
 function start() {
 
-    getCardsById(card_id).then(card => {
+    getLogoByStoreName(name_store).then(store => {
         const logoCard = document.createElement("img");
-        logoCard.setAttribute("src", card.store.link);
-        logoCard.setAttribute("alt", card.store.logoName);
+        logoCard.setAttribute("src", store.link);
+        logoCard.setAttribute("alt", store.storeName);
         logoCard.setAttribute("width", "12%");
         logoCard.setAttribute("height", "12%");
         logoCard.setAttribute("id", "immagine_store");
@@ -135,7 +153,7 @@ function start() {
                 remove_icon.setAttribute("viewBox", "0 0 16 16");
                 remove_icon.classList.add("bi");
                 remove_icon.classList.add("bi-trash3");
-                remove_icon.setAttribute("onclick", "elimina(this, "+c.id+")");
+                remove_icon.setAttribute("onclick", "elimina("+c.id+")");
                 
                 const remove_path = document.createElementNS("http://www.w3.org/2000/svg", "path");
                 remove_path.setAttribute("d", "M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5");
@@ -165,7 +183,7 @@ function start() {
 
 
 //funzione elimina
-function elimina (elemento, id) {
+function elimina (id) {
     return fetch("http://localhost:8080/api/card/"+id, {
         method: "DELETE"
     })
@@ -173,13 +191,9 @@ function elimina (elemento, id) {
             if (!response.ok) {
                 throw new Error("Errore durante il caricamento delle card");
             }
-            
-            return response.json();
-        })
-        .then (data => {
-            console.log("Card eliminata", data);
-            if (elemento.parentNode)
-                elemento.parentNode.removeChild;
+            alert("Card eliminata");
+            response.json();
+            return location.reload();
         })
         .catch(error => {
 
