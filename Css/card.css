@@ -2,6 +2,16 @@
 
 *{
     font-family: "Quicksand", sans-serif;
+    box-sizing: border-box;
+}
+
+:root {
+    --modal-duration: 1s;
+}
+
+body {
+    margin: 0;
+    transition: transform 0.3s ease;
 }
 
 .btn {
@@ -36,4 +46,78 @@
 button {
     border: none;
     background: none;
+}
+
+.sezione-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    z-index: 1050;
+}
+
+.modal-personale {
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    width: 400px;
+}
+
+.modal-form div {
+    margin: 30px;
+}
+
+.modal-form label {
+    display: block;
+    margin: 6px;
+}
+
+.modal-form .submit-btn {
+    display: block;
+    position: relative;
+    margin: 6px;
+    left: 33%;
+    border-radius: 5px;
+}
+
+.modal-form .form-input {
+    padding: 8px;
+    width: 100%;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    font-size: 25px;
+    position: absolute;
+    top: 5px;
+    right: 12px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.sezione-form .submit-btn {
+    padding: 20px;
+    font-weight: bold;
+    background: green;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.sezione-form.show-modal {
+    display: block !important;
+}
+
+.div-form h1{
+    position: relative;
+    margin: 10px;
 }
