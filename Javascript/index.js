@@ -3,6 +3,8 @@ let mostrato = new Set(); //utile per tenere traccia degli ID già mostrati
 const cardContainer = document.getElementById("card-container");
 
 starting_point();
+modalCarta();
+salvataggio();
 
 //funzione per la creazione delle carte
 function creazioneCard (card, container) {
@@ -143,30 +145,118 @@ document.getElementById('ricerca-testo').addEventListener('submit', function (ev
             cardContainer.appendChild(new_container);
     });
 });
-<<<<<<< HEAD
 });
 
 function cartaPlus (container) {
-        
-    const link = document.createElement("a");
-    link.setAttribute("href", "plus.html"); 
-
+    
     const cartaPlus = document.createElement("div");
     cartaPlus.classList.add("carta");
+    cartaPlus.setAttribute("type", "button");
+    cartaPlus.setAttribute( "data-bs-toggle", "modal"); 
+    cartaPlus.setAttribute( "data-bs-target", "#ModalCard"); 
 
     const plusContainer = document.createElement("div");
     plusContainer.classList.add("plusContainer");
 
     const plus = document.createElement("i");
     plus.classList.add("fa-solid", "fa-square-plus");
+    
 
     plusContainer.appendChild(plus);
     cartaPlus.appendChild(plusContainer);
-    link.appendChild(cartaPlus);
+   
 
-    container.appendChild(link);
+    container.appendChild(cartaPlus);
 
 }
-=======
+
+
+
+//funzione per la creazione della carta +
+function modalCarta ()  {
+
+    const elenco = document.getElementById("select-state");
+
+    getStores().then(stores => {
+      
+        stores.forEach(store => {
+            const negozio = document.createElement("option");
+            negozio.value = store.id;
+            negozio.textContent= store.storeName;
+
+            elenco.appendChild(negozio);
+            
+        })
+        
+    })
+
+
+    
+}
+
+
+
+function getStores() {
+    return fetch("http://localhost:8080/api/store", {
+        method: "GET"
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Errore durante il caricamento del form");
+            }
+            return response.json();
+        })
+        .catch(error => {
+
+            console.error("Errore:", error);
+            document.getElementById("error-message").textContent = "Impossibile caricare il form. Riprova più tardi.";
+            return [];
+        });
+
+}
+
+//funzione per salvare una nuova Card nel db
+function salvataggio(){
+    document.getElementById("salvaCarta").addEventListener("click", function () {
+        const idStore = document.getElementById("select-state").value;
+        const numeroCard = document.getElementById("numeroCard").value;
+        const noteCard = document.getElementById("noteCard").value;
+
+        if(!idStore || !numeroCard) {
+            alert("Compila tutti i campi.");
+            return;
+        }
+
+        const nuovaCarta = {
+            number: numeroCard,
+            notes: noteCard
+        };
+
+         fetch(`http://localhost:8080/api/card/${idStore}`, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+            "Content-Type": "application/json"
+        },
+        
+        body: JSON.stringify(nuovaCarta)
+    })
+    
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Errore durante il salvataggio della carta");
+        }
+
+        const modal = bootstrap.Modal.getInstance(document.getElementById('ModalCard'));
+        modal.hide();
+
+        document.getElementById("select-state").value = "";
+        document.getElementById("numeroCard").value = "";
+        document.getElementById("noteCard").value = "";
+    })
+    .catch(error => {
+    console.error("Errore:", error);
+    alert("Errore durante il salvataggio della carta");
 });
->>>>>>> 028ffac0384436c5f8218c38adb954958816b842
+    });
+}

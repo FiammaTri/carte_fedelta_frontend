@@ -32,12 +32,60 @@
     </button>
   </form>
 </div>
+
+<!-- Modal -->
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="ModalCard" tabindex="-1" aria-labelledby="ModalCard" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalCard_titolo">Inserisci dati carta</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+  <div class="form-group">
+   
+<select class="form-control" id="select-state" placeholder="Seleziona un negozio">
+  
+  <option value="">Seleziona un negozio</option>
+  
+  
+</select>
+
+</div>
+  <div class="form-group">
+    <label for="numeroCard">Inserisci il numero della carta</label>
+    <input type="text" class="form-control" id="numeroCard" placeholder="Codice">
+  </div>
+  <div class="form-group">
+    <label for="note">Note</label>
+    <input type="text" class="form-control" id="noteCard" placeholder="Note">
+  </div>
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+        <button type="button" class="btn btn-primary" id="salvaCarta">Salva</button>
+      </div>
+    </div>
+  </div>
+</div>
+
         <!-- Schede -->
+                
         <div id="card-container">
  
         </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-    <script src="/Javascript/index.js"></script>
+    <script src="/Javascript/index.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+
   </body>
 </html>
