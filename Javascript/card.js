@@ -164,9 +164,6 @@ function start() {
                 blocco_card.appendChild(codice_barre);
                 blocco_card.appendChild(note_section);
                 blocco_card.appendChild(blocco_opzioni);
-
-                
-                console.log(c.number);
             }
             card_container.appendChild(blocco_card);
 
@@ -212,25 +209,27 @@ function apertura_form(numero_carta, note, id) {
 
     // event listenter per il click sul tasto di invio del form
     document.getElementById('invio-form').onclick = function() {
-        if (numero_input.value < 11) {
-            alert("Inserire 12 cifre per il nuovo numero della card");
-            location.reload();
-        }
        modifica_func(numero_input.value, note_input.value, id);
     };
 
     // event listener per il tasto di invio all'interno del form
-    document.getElementById('invio-form').addEventListener("keydown", function (e) {
-        
+    window.addEventListener("keydown", function (e) {
+
         if (e.code==="Enter") {
             modifica_func(numero_input.value, note_input.value, id);    
         }
-        
-        if (numero_input.value < 11) {
-            alert("Inserire 12 cifre per il nuovo numero della card");
-            location.reload();
-        }
+    })
 
+    document.getElementById('numero').addEventListener("keydown", function (e) {
+        if (e.code==="Enter") {
+            modifica_func(numero_input.value, note_input.value, id);
+        }
+    })
+
+    document.getElementById('note').addEventListener("keydown", function (e) {
+        if (e.code==="Enter") {
+            modifica_func(numero_input.value, note_input.value, id);   
+        }
     })
 }
 
@@ -252,7 +251,7 @@ function modifica_func (num, note, id) {
         })
         .then(data => {
             alert("Modifica effettuata!");
-            location.href = "index.html";
+            location.href="card.html?store="+name_store;
             modal.classList.remove('show-modal');
             console.log("Card modificata: ", data);
         })
@@ -263,26 +262,3 @@ function modifica_func (num, note, id) {
 
 // avvio funzione principale
 start();
-
-
-/*
-
-innerHTML per i barcode
-img ----- <img src="${card.store.link}" alt="${card.store.logoName}" width="12%" height="12%" id="immagine_store">
-        <br>
-
-
-div card ------- <div class="z-3 p-5 rounded-3" id="card_code">
-                            <svg class="barcode"
-                                jsbarcode-format="ean13"
-                                jsbarcode-value="${c.number}"
-                                jsbarcode-textmargin="0"
-                                jsbarcode-font="sans-serif"
-                                jsbarcode-width="2"
-                                jsbarcode-height="100"
-                                jsbarcode-displayValue=true>
-                            </svg>
-                        </div>
-
-                        JsBarcode(".barcode").init();
-*/
